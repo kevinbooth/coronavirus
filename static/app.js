@@ -49,11 +49,11 @@ COVID19.init = function () {
  */
 COVID19.fetch = function () {
     axios.get(COVID19.api + 'locations' + COVID19.source)
-      .then(function (response) {
-          COVID19.latest = response.data.latest;
-          console.log(COVID19.latest);
-          COVID19.locations = response.data.locations;
-          console.log(COVID19.locations);
+    .then(function (response) {
+        COVID19.latest = response.data.latest;
+        console.log(COVID19.latest);
+        COVID19.locations = response.data.locations;
+        console.log(COVID19.locations);
     }).catch(function (err) {
         console.log('error', err)
     });
