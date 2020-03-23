@@ -4,20 +4,20 @@
  *   Version: 1.0
  *   Author: Kevin Booth
  *   Dependencies: 
- *      savjeecoin
+ *      chart.js
  *
  ******************************************************************************/
 
-const EC = require('elliptic').ec;
-const ec = new EC('secp256k1');
-const {Blockchain, Transaction} = require('savjeecoin');
 
 /**
  * COVID19
  * @namespace
  */
 var COVID19 = window.COVID19 || {
-    api: ''
+    api: 'https://coronavirus-tracker-api.herokuapp.com/v2/',
+    source: '?source=jhu',
+    latest: '',
+    locations: ''
 };
 
 /**
@@ -38,7 +38,28 @@ COVID19.ready = function (_fn) {
  * @function
  */
 COVID19.init = function () {
+    COVID19.fetch();
+};
 
+/**
+ * Fires off all functions on page load
+ * @function
+ */
+COVID19.fetch = function () {
+    fetch(COVID19.api + 'predict' + COVID19.source, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        response.json().then(function (data) {
+            COVID19.latest = data.latest;
+            console.log(COVID19.latest);
+            COVID19.locations = data.locations;
+        });
+    }).catch(function (err) {
+        console.log(err)
+    });
 };
 
 /**

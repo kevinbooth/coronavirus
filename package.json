@@ -1,5 +1,5 @@
 {
-  "name": "blockchain",
+  "name": "coronavirus",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinbooth/blockchain.git"
+    "url": "git+https://github.com/kevinbooth/coronavirus.git"
   },
   "author": "Kevin Booth",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kevinbooth/blockchain/issues"
+    "url": "https://github.com/kevinbooth/coronavirus/issues"
   },
-  "homepage": "https://github.com/kevinbooth/blockchain#readme",
+  "homepage": "https://github.com/kevinbooth/coronavirus",
   "dependencies": {
-    "savjeecoin": "^1.0.1"
+    
   },
   "devDependencies": {
+    "chart.js": "^2.9.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   }
