@@ -14,7 +14,8 @@
  * @namespace
  */
 var COVID19 = window.COVID19 || {
-    api: 'https://coronavirus-tracker-api.herokuapp.com/v2/',
+    //api: 'httpss://api.covid19api.com/summary',
+    api: 'http://coronavirus-tracker-api.herokuapp.com/v2/',
     source: '?source=jhu',
     latest: '',
     locations: ''
@@ -48,6 +49,7 @@ COVID19.init = function () {
 COVID19.fetch = function () {
     fetch(COVID19.api + 'predict' + COVID19.source, {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }
@@ -58,7 +60,7 @@ COVID19.fetch = function () {
             COVID19.locations = data.locations;
         });
     }).catch(function (err) {
-        console.log(err)
+        console.log('error', err)
     });
 };
 
