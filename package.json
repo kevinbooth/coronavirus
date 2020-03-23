@@ -16,9 +16,7 @@
     "url": "https://github.com/kevinbooth/coronavirus/issues"
   },
   "homepage": "https://github.com/kevinbooth/coronavirus",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "chart.js": "^2.9.3",
     "webpack": "^4.41.2",
