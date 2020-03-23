@@ -8,6 +8,7 @@
  *
  ******************************************************************************/
 
+const axios = require('axios');
 
 /**
  * COVID19
@@ -47,18 +48,12 @@ COVID19.init = function () {
  * @function
  */
 COVID19.fetch = function () {
-    fetch(COVID19.api + 'predict' + COVID19.source, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    }).then(function (response) {
-        response.json().then(function (data) {
-            COVID19.latest = data.latest;
-            console.log(COVID19.latest);
-            COVID19.locations = data.locations;
-        });
+    axios.get(COVID19.api + 'locations' + COVID19.source)
+      .then(function (response) {
+          COVID19.latest = response.data.latest;
+          console.log(COVID19.latest);
+          COVID19.locations = response.data.locations;
+          console.log(COVID19.locations);
     }).catch(function (err) {
         console.log('error', err)
     });
