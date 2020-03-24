@@ -103,9 +103,9 @@ COVID19.fetch = async function () {
 };
 
 COVID19.appendData = function () {
-    let _confirmed = document.getElementsByClassName('ui-confirmed')[0];
-    let _deaths = document.getElementsByClassName('ui-deaths')[0];
-    let _recovered = document.getElementsByClassName('ui-recovered')[0];
+    const _confirmed = document.getElementsByClassName('ui-confirmed')[0];
+    const _deaths = document.getElementsByClassName('ui-deaths')[0];
+    const _recovered = document.getElementsByClassName('ui-recovered')[0];
 
     if (_confirmed && _deaths && _recovered) {
         _confirmed.innerHTML = COVID19.confirmed;
@@ -114,6 +114,20 @@ COVID19.appendData = function () {
 
         console.log(_deaths, _recovered);
     }
+
+    const _table = document.getElementsByClassName('ui-table')[0];
+    let _output = '';
+
+    COVID19.latest.forEach(function (country, index) {
+        //console.log(country, index);
+
+        _output += '<tr>',
+        _output += '    <td>' + country.Country + '</td>',
+        _output += '    <td>' + country.TotalConfirmed + '</td>',
+        _output += '</tr>';
+    });
+
+    _table.innerHTML = _output;
 }
 
 /**
