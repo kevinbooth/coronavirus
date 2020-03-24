@@ -44,15 +44,18 @@ COVID19.ready = function (_fn) {
  * @function
  */
 COVID19.init = function () {
-    COVID19.fetch();
+    COVID19.fetch()
+        .then(function () {
+            COVID19.appendData();
+        });
 };
 
 /**
  * Fires off all functions on page load
  * @function
  */
-COVID19.fetch = function () {
-    axios.get(COVID19.api + 'summary')
+COVID19.fetch = async function () {
+    return await axios.get(COVID19.api + 'summary')
     .then(function (response) {
         let data = response.data.Countries;
 
@@ -93,10 +96,25 @@ COVID19.fetch = function () {
         console.log('deaths', COVID19.deaths);
         console.log('newDeaths', COVID19.newDeaths);
 
+        //COVID19.appendData();
     }).catch(function (err) {
         console.log('error', err)
     });
 };
+
+COVID19.appendData = function () {
+    let _confirmed = document.getElementsByClassName('ui-confirmed')[0];
+    let _deaths = document.getElementsByClassName('ui-deaths')[0];
+    let _recovered = document.getElementsByClassName('ui-recovered')[0];
+
+    if (_confirmed && _deaths && _recovered) {
+        _confirmed.innerHTML = COVID19.confirmed;
+        _deaths.innerHTML = COVID19.deaths;
+        _recovered.innerHTML = COVID19.recovered;
+
+        console.log(_deaths, _recovered);
+    }
+}
 
 /**
  * Invoke ready function
